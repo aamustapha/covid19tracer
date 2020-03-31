@@ -1,5 +1,6 @@
 from neo4j import GraphDatabase
 import googlemaps
+import os
 
 class Neo4jGoogleMap:
 
@@ -26,9 +27,9 @@ class Neo4jGoogleMap:
 
 
 url = "bolt://100.27.2.160:33349"
-googleKey = open('../../api.txt').read()
-username = "neo4j"
-password = "dares-warnings-pound"
+googleKey = os.getenv('GMAPS_API')
+username = os.getenv('neo4j_user')
+password = os.getenv('neo4j_pass')
 query="MATCH (x) return (x)"
 
 neoGoo = Neo4jGoogleMap(googleKey, url, username, password)
